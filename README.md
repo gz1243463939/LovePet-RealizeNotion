@@ -22,7 +22,7 @@ A love pet - cat's information platform
 
 4 . [模块划分](#模块划分)
 
-
+5 . [项目部署](#项目部署)
 
 # 平台介绍
 
@@ -37,3 +37,5 @@ A love pet - cat's information platform
 ## 后端技术栈
 
 # 模块划分
+
+# 项目部署
