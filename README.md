@@ -1,4 +1,4 @@
-![](https://.shields.io/travis/rust-lang/rust.svg)
+![](https://img.shields./travis/rust-lang/rust/master.svg)
 ![](https://img.shields.io/scrutinizer/coverage/g/phpmyadmin/phpmyadmin/master.svg)
 ![](https://img.shields.io/sensiolabs/i/45afb680-d4e6-4e66-93ea-bcfa79eb8a87.svg)
 ![](https://img..io/dotnet.myget/dotnet-coreclr/dt/Microsoft.DotNet.CoreCLR.svg)
