@@ -18,7 +18,7 @@ A love pet - cat's information platform
 
 ## 目录
 
-1 . [平台介绍](#平台介绍)
+1 . [平台介绍](#1 平台介绍)
 
   - [平台背景](##平台背景)
     
@@ -34,7 +34,9 @@ A love pet - cat's information platform
 
 5 . [项目部署](#项目部署)
 
-# 平台介绍
+  - [部署方式选择](##部署方式选择)
+
+# 1 平台介绍
 
 ## 平台背景
 
@@ -49,3 +51,5 @@ A love pet - cat's information platform
 # 模块划分
 
 # 项目部署
+
+## 部署方式选择
