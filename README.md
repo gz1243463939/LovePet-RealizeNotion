@@ -61,6 +61,8 @@ A love pet - cat's information platform
 
 ## 1.3平台研发进度
 
+#1 2018.01-04 收集相关爬取的，相关分支在**[crawler](https://github.com/PythonScientists/LovePet-RealizeNotion/blob/crawler/URL/URL.md)**
+
 ## 1.3平台
 # 2功能
 
