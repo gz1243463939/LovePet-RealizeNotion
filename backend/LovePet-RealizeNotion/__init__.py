@@ -13,6 +13,9 @@ app = Sanic(__name__)
 @app.route("/")
 def hello(request):
     return text("dog")
+@app.route("/<tag:int>")
+def tag(request,tag):
+    return text(tag)
 
 
 if __name__ == "__main__":
