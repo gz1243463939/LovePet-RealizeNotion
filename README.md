@@ -32,8 +32,6 @@
   - [平台用户](##1.2平台用户)
   
   - [平台进度](##1.3平台研发进度)
-  
-    详细研发情况请查看我们的[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)
     
 2 . [功能](#2功能)
 
@@ -58,9 +56,14 @@
   - [部署方式选择](##5.1部署方式选择)
   
   - [确定部署方式](##5.2部署)
-  
+
+----
+
 本项目会随时更新进度，进度会随时更新在[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)上面
+
 感兴趣的参与者可以在项目的[wiki](https://github.com/PythonScientists/LovePet-RealizeNotion/wiki)中查看项目的计划以及整体实现方案
+
+---
 
 # 1平台介绍
 
@@ -70,7 +73,9 @@
 
 ## 1.3平台研发进度
 
-#1 2018.01-04 收集相关爬取的，相关分支在**[crawler](https://github.com/PythonScientists/LovePet-RealizeNotion/blob/crawler/URL/URL.md)**
+#1 2018.01.04 收集相关爬取的，相关分支在**[crawler](https://github.com/PythonScientists/LovePet-RealizeNotion/blob/crawler/URL/URL.md)**
+
+#2 2018.01.04 详细研发情况请查看我们的**[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)**
 
 ## 1.3平台
 # 2功能
