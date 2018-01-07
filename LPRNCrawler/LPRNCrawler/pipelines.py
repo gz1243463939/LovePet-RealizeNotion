@@ -7,14 +7,29 @@
 
 
 import pymongo
-from datetime import datetime
-import threading
-client=pymongo.MongoClient(host='127.0.0.1',port=27017)
-db=client['scrapy_data']['tianya']
 
-class TYPipeline(object):
+class MongoPipeline(object):
 
-    def process_item(self,item ,spider):
-        with open('tianya——养宠心情.txt','a') as f:
-            f.write(str(item))
-            f.write('\n')
+    collection_name = 'yangchongxinqing'
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get('MONGO_URI'),
+            mongo_db=crawler.settings.get('MONGO_DATABASE', 'tianya')
+        )
+
+    def open_spider(self, spider):
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+
+    def close_spider(self, spider):
+        self.client.close()
+
+    def process_item(self, item, spider):
+        self.db[self.collection_name].insert(dict(item))
+        return item

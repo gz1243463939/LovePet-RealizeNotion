@@ -61,13 +61,14 @@ class tianyaBBSspider(CrawlSpider):
             request.meta['item'] = item
             yield request
 
-        if next_page_url[0]:
-            # 调用自身进行迭代
-            request = scrapy.Request(urljoin(self.baseurl, next_page_url[0]), callback=self.parse)
-            yield request
+        # if next_page_url[0]:
+        #     # 调用自身进行迭代
+        #     request = scrapy.Request(urljoin(self.baseurl, next_page_url[0]), callback=self.parse)
+        #     yield request
 
     def parse_item(self, response):
-
+        import time
+        time = time.strftime("%Y.%m.%d",time.localtime())
         content = ''
         sel = Selector(response)
         item = response.meta['item']
@@ -77,7 +78,7 @@ class tianyaBBSspider(CrawlSpider):
         article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
         article_content = sel.xpath(
             '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath('//span[@class="s_title"]/span/text()').extract()
+        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
 
@@ -92,11 +93,19 @@ class tianyaBBSspider(CrawlSpider):
         click_num = article_clik_num[0]
         reply_num = article_reply_num[0]
 
-        l.add_value('article_name', article_name)
-        l.add_value('article_content', content)
-        l.add_value('article_url', article_url)
-        l.add_value('reply_num', reply_num)
-        l.add_value('click_num', click_num)
-        l.add_value('article_author', article_author)
+        l.add_value('title', article_name)
+        l.add_value('content', content)
+        l.add_value('url', article_url)
+        l.add_value('reply', reply_num)
+        l.add_value('click', click_num)
+        l.add_value('uname', article_author)
+        l.add_value('source', "天涯论坛-养宠心情")
+        l.add_value('typeid', 0)
+        l.add_value('datetime', time)
+        l.add_value('EmotionalScore', 0)
+
+
+
+
 
         yield l.load_item()

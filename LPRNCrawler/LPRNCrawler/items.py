@@ -9,14 +9,13 @@
 from scrapy.item import Item, Field
 
 class CpsecspidersItem(Item):
-
-    article_name = Field()
-    article_url = Field()
-    article_content = Field()
-    article_time = Field()
-    article_id = Field()
-    crawl_time = Field()
-    article_from = Field()
-    click_num = Field()
-    reply_num = Field()
-    article_author =Field()
+    title = Field()
+    content = Field()
+    url = Field()
+    reply = Field()
+    click = Field()
+    uname = Field()
+    source = Field()
+    typeid = Field()
+    datetime = Field()
+    EmotionalScore =Field()
