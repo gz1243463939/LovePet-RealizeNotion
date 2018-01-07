@@ -75,6 +75,8 @@
 
 #1 2018.01.04 收集相关爬取的，相关分支在**[crawler](https://github.com/PythonScientists/LovePet-RealizeNotion/blob/crawler/URL/URL.md)**
 
+#1.1 2018.01.06 天涯论坛宠物版块信息爬取测试完成 相关信息请看[天涯爬取](https://github.com/PythonScientists/LovePet-RealizeNotion/commit/b45eea23dd8aeda3259d50c4f750c2554edfdbd9)
+
 #2 2018.01.04 详细研发情况请查看我们的**[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)**
 
 ## 1.3平台
