@@ -58,8 +58,8 @@
 # 6宠物交流论坛
 
 信息源 | 信息链接
-------------- | -------------
- 宠物乐园_天涯论坛  | http://bbs.tianya.cn/list-75-1.shtml
+------------- | -------------|
+ 宠物乐园_天涯论坛  | http://bbs.tianya.cn/list-75-1.shtml  | 包含5个版块：养宠心情、非常宠物、留言看板、宠物信息、宠迷
  CPN宠物论坛 |http://www.chinapet.net/bbs/
  乐乐地带论坛 | http://club.lelezone.com/g4/f53-1/
 百度贴吧宠物吧 | http://tieba.baidu.com/f?kw=%B3%E8%CE%EF&fr=ala0&tpl=5&traceid=
