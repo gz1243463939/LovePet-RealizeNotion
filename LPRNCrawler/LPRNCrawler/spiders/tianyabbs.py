@@ -61,10 +61,10 @@ class tianyaBBSspider(CrawlSpider):
             request.meta['item'] = item
             yield request
 
-        # if next_page_url[0]:
-        #     # 调用自身进行迭代
-        #     request = scrapy.Request(urljoin(self.baseurl, next_page_url[0]), callback=self.parse)
-        #     yield request
+        if next_page_url[0]:
+            # 调用自身进行迭代
+            request = scrapy.Request(urljoin(self.baseurl, next_page_url[0]), callback=self.parse)
+            yield request
 
     def parse_item(self, response):
         import time
