@@ -38,7 +38,7 @@
  
 # 1宠物买卖信息
 
-信息源 | 信息链接
+信息源 | 信息链接 
 ------------- | -------------
  淘宝搜索“宠物”分类“店铺”  | https://shopsearch.taobao.com/search?app=shopsearch&q=%E5%AE%A0%E7%89%A9&imgfile=&js=1&stats_click=search_radio_tmall%3A1&initiative_id=staobaoz_20180103&tab=mall&ie=utf8
  赶集网宠物买卖 |http://bj.ganji.com/chongwu/
@@ -57,9 +57,9 @@
 
 # 6宠物交流论坛
 
-信息源 | 信息链接
-------------- | -------------
- 宠物乐园_天涯论坛  | http://bbs.tianya.cn/list-75-1.shtml
+信息源 | 信息链接 | 具体类别
+------------- | ------------- | --------------------------
+ 宠物乐园_天涯论坛  | http://bbs.tianya.cn/list-75-1.shtml | 包含5个版块：养宠心情、非常宠物、留言看板、宠物信息、宠迷学堂
  CPN宠物论坛 |http://www.chinapet.net/bbs/
  乐乐地带论坛 | http://club.lelezone.com/g4/f53-1/
 百度贴吧宠物吧 | http://tieba.baidu.com/f?kw=%B3%E8%CE%EF&fr=ala0&tpl=5&traceid=
