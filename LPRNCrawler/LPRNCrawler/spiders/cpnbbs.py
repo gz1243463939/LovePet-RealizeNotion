@@ -2,7 +2,7 @@
 #-*-coding:utf-8-*-
 # __all__=""
 # __datetime__=""
-# __purpose__=""
+# __purpose__="cpn宠物论坛爬取"
 
 import scrapy
 
@@ -25,29 +25,29 @@ from xml.dom.minidom import parse
 import xml.dom.minidom
 
 
-class tianyaBBSspider(CrawlSpider):
+class CpnBBSspider(CrawlSpider):
 
     # 爬虫名称，非常关键，唯一标示
-    name = "tianya1"
+    name = "cpn1"
 
     # 自定义spider
     custom_settings = {
         'ITEM_PIPELINES': {
-            'LPRNCrawler.pipelines.MongoTianya_1': 300,
+            'LPRNCrawler.pipelines.MongoCpn_1': 300,
         }
     }
     # 域名限定
-    allowed_domains = ["bbs.tianya.cn"]
+    allowed_domains = ["chinapet.net"]
 
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # 天涯论坛热帖榜  可以写多个用，分隔
+        # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://bbs.tianya.cn/list.jsp?item=75&sub=2",
+        "http://www.chinapet.net/bbs/forum-85.html",
 
     ]
-    baseurl = 'http://bbs.tianya.cn'
+    baseurl = 'http://www.chinapet.net/bbs/'
 
     def parse(self, response):
         # 选择器
@@ -55,10 +55,9 @@ class tianyaBBSspider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            '//div[@class="mt5"]/table[@class="tab-bbs-list tab-bbs-list-2"]//tr[@class="bg"]/td[1]/a/@href').extract()
+            '//span[@class="topictitle"]/a/@href').extract()
         # 下一页地址
-        next_page_url = sel.xpath("//div[@class='short-pages-2 clearfix']/div[@class='links']/a[last()]/@href").extract()
-
+        next_page_url = sel.xpath("//span[@class='nav']/a[3]/@href").extract()
         for url in article_url:
             # 拼接url
             urll = urljoin(self.baseurl, url)
@@ -69,6 +68,7 @@ class tianyaBBSspider(CrawlSpider):
 
         if next_page_url[0]:
             # 调用自身进行迭代
+            print(urljoin(self.baseurl, next_page_url[0]))
             request = scrapy.Request(urljoin(self.baseurl, next_page_url[0]), callback=self.parse)
             yield request
 
@@ -81,13 +81,12 @@ class tianyaBBSspider(CrawlSpider):
         l = ItemLoader(item=CpsecspidersItem(), response=response)
 
         article_url = str(response.url)
-        article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
+        article_name = sel.xpath('//a[@class="maintitle"]/text()').extract()
         article_content = sel.xpath(
-            '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
+            '//span[@class="postbody"]/text()').extract()
+        article_author = sel.xpath("//td[@class='row1'][1]/span[@class='postdetails']/text()[1]").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
-
         # 文章内容拼起来
         for i in article_content:
             content = content + i
@@ -107,35 +106,35 @@ class tianyaBBSspider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "天涯论坛-养宠心情")
+        l.add_value('source', "cpn论坛-诺亚方舟")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)
         yield l.load_item()
 
-class tianyaBBS2spider(CrawlSpider):
+class CpnBBS2spider(CrawlSpider):
 
     # 爬虫名称，非常关键，唯一标示
-    name = "tianya2"
+    name = "cpn2"
 
     # 自定义spider
     custom_settings = {
         'ITEM_PIPELINES': {
-            'LPRNCrawler.pipelines.MongoTianya_2': 300,
+            'LPRNCrawler.pipelines.MongoCpn_2': 300,
         }
     }
     # 域名限定
-    allowed_domains = ["bbs.tianya.cn"]
+    allowed_domains = ["chinapet.net"]
 
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # 天涯论坛热帖榜  可以写多个用，分隔
+        # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://bbs.tianya.cn/list.jsp?item=75&sub=4",
+        "http://www.chinapet.net/bbs/forum-8.html",
 
     ]
-    baseurl = 'http://bbs.tianya.cn'
+    baseurl = 'http://www.chinapet.net/bbs/'
 
     def parse(self, response):
         # 选择器
@@ -143,10 +142,9 @@ class tianyaBBS2spider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            '//div[@class="mt5"]/table[@class="tab-bbs-list tab-bbs-list-2"]//tr[@class="bg"]/td[1]/a/@href').extract()
+            '//span[@class="topictitle"]/a/@href').extract()
         # 下一页地址
-        next_page_url = sel.xpath("//div[@class='short-pages-2 clearfix']/div[@class='links']/a[last()]/@href").extract()
-
+        next_page_url = sel.xpath('//td[@nowrap="nowrap"]/span[@class="nav"]/a[1]/@href').extract()
         for url in article_url:
             # 拼接url
             urll = urljoin(self.baseurl, url)
@@ -169,13 +167,13 @@ class tianyaBBS2spider(CrawlSpider):
         l = ItemLoader(item=CpsecspidersItem(), response=response)
 
         article_url = str(response.url)
-        article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
+        article_name = sel.xpath('//a[@class="maintitle"]/text()').extract()
         article_content = sel.xpath(
-            '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
+            '//table[@class="attachtable"]//text()').extract()
+        article_author = sel.xpath("//td[@class='row1'][1]/span[@class='postdetails']/text()[1]").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
-
+        # print(article_name)
         # 文章内容拼起来
         for i in article_content:
             content = content + i
@@ -195,35 +193,35 @@ class tianyaBBS2spider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "天涯论坛-非常宠物")
+        l.add_value('source', "cpn论坛-狗话连篇")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)
         yield l.load_item()
 
-class tianyaBBS3spider(CrawlSpider):
+class CpnBBS3spider(CrawlSpider):
 
     # 爬虫名称，非常关键，唯一标示
-    name = "tianya3"
+    name = "cpn3"
 
     # 自定义spider
     custom_settings = {
         'ITEM_PIPELINES': {
-            'LPRNCrawler.pipelines.MongoTianya_3': 300,
+            'LPRNCrawler.pipelines.MongoCpn_3': 300,
         }
     }
     # 域名限定
-    allowed_domains = ["bbs.tianya.cn"]
+    allowed_domains = ["chinapet.net"]
 
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # 天涯论坛热帖榜  可以写多个用，分隔
+        # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://bbs.tianya.cn/list.jsp?item=75&sub=5",
+        "http://www.chinapet.net/bbs/forum-20.html",
 
     ]
-    baseurl = 'http://bbs.tianya.cn'
+    baseurl = 'http://www.chinapet.net/bbs/'
 
     def parse(self, response):
         # 选择器
@@ -231,10 +229,9 @@ class tianyaBBS3spider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            '//div[@class="mt5"]/table[@class="tab-bbs-list tab-bbs-list-2"]//tr[@class="bg"]/td[1]/a/@href').extract()
+            '//span[@class="topictitle"]/a/@href').extract()
         # 下一页地址
-        next_page_url = sel.xpath("//div[@class='short-pages-2 clearfix']/div[@class='links']/a[last()]/@href").extract()
-
+        next_page_url = sel.xpath('//td[@nowrap="nowrap"]/span[@class="nav"]/a[1]/@href').extract()
         for url in article_url:
             # 拼接url
             urll = urljoin(self.baseurl, url)
@@ -257,13 +254,13 @@ class tianyaBBS3spider(CrawlSpider):
         l = ItemLoader(item=CpsecspidersItem(), response=response)
 
         article_url = str(response.url)
-        article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
+        article_name = sel.xpath('//a[@class="maintitle"]/text()').extract()
         article_content = sel.xpath(
-            '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
+            '//table[@class="attachtable"]//text()').extract()
+        article_author = sel.xpath("//td[@class='row1'][1]/span[@class='postdetails']/text()[1]").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
-
+        # print(article_name)
         # 文章内容拼起来
         for i in article_content:
             content = content + i
@@ -283,35 +280,35 @@ class tianyaBBS3spider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "天涯论坛-宠迷学堂")
+        l.add_value('source', "cpn论坛-猫猫细语")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)
         yield l.load_item()
 
-class tianyaBBS4spider(CrawlSpider):
+class CpnBBS4spider(CrawlSpider):
 
     # 爬虫名称，非常关键，唯一标示
-    name = "tianya4"
+    name = "cpn4"
 
     # 自定义spider
     custom_settings = {
         'ITEM_PIPELINES': {
-            'LPRNCrawler.pipelines.MongoTianya_4': 300,
+            'LPRNCrawler.pipelines.MongoCpn_4': 300,
         }
     }
     # 域名限定
-    allowed_domains = ["bbs.tianya.cn"]
+    allowed_domains = ["chinapet.net"]
 
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # 天涯论坛热帖榜  可以写多个用，分隔
+        # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://bbs.tianya.cn/list.jsp?item=75&sub=6",
+        "http://www.chinapet.net/bbs/forum-121.html",
 
     ]
-    baseurl = 'http://bbs.tianya.cn'
+    baseurl = 'http://www.chinapet.net/bbs/'
 
     def parse(self, response):
         # 选择器
@@ -319,10 +316,9 @@ class tianyaBBS4spider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            '//div[@class="mt5"]/table[@class="tab-bbs-list tab-bbs-list-2"]//tr[@class="bg"]/td[1]/a/@href').extract()
+            '//span[@class="topictitle"]/a/@href').extract()
         # 下一页地址
-        next_page_url = sel.xpath("//div[@class='short-pages-2 clearfix']/div[@class='links']/a[last()]/@href").extract()
-
+        next_page_url = sel.xpath('//td[@nowrap="nowrap"]/span[@class="nav"]/a[1]/@href').extract()
         for url in article_url:
             # 拼接url
             urll = urljoin(self.baseurl, url)
@@ -345,13 +341,13 @@ class tianyaBBS4spider(CrawlSpider):
         l = ItemLoader(item=CpsecspidersItem(), response=response)
 
         article_url = str(response.url)
-        article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
+        article_name = sel.xpath('//a[@class="maintitle"]/text()').extract()
         article_content = sel.xpath(
-            '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
+            '//table[@class="attachtable"]//text()').extract()
+        article_author = sel.xpath("//td[@class='row1'][1]/span[@class='postdetails']/text()[1]").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
-
+        # print(article_name)
         # 文章内容拼起来
         for i in article_content:
             content = content + i
@@ -371,35 +367,36 @@ class tianyaBBS4spider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "天涯论坛-宠物信息")
+        l.add_value('source', "cpn论坛-冷血家族")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)
         yield l.load_item()
 
-class tianyaBBS5spider(CrawlSpider):
+
+class CpnBBS5spider(CrawlSpider):
 
     # 爬虫名称，非常关键，唯一标示
-    name = "tianya5"
+    name = "cpn5"
 
     # 自定义spider
     custom_settings = {
         'ITEM_PIPELINES': {
-            'LPRNCrawler.pipelines.MongoTianya_5': 300,
+            'LPRNCrawler.pipelines.MongoCpn_5': 300,
         }
     }
     # 域名限定
-    allowed_domains = ["bbs.tianya.cn"]
+    allowed_domains = ["chinapet.net"]
 
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # 天涯论坛热帖榜  可以写多个用，分隔
+        # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://bbs.tianya.cn/list.jsp?item=75&sub=7",
+        "http://www.chinapet.net/bbs/forum-84.html",
 
     ]
-    baseurl = 'http://bbs.tianya.cn'
+    baseurl = 'http://www.chinapet.net/bbs/'
 
     def parse(self, response):
         # 选择器
@@ -407,10 +404,9 @@ class tianyaBBS5spider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            '//div[@class="mt5"]/table[@class="tab-bbs-list tab-bbs-list-2"]//tr[@class="bg"]/td[1]/a/@href').extract()
+            '//span[@class="topictitle"]/a/@href').extract()
         # 下一页地址
-        next_page_url = sel.xpath("//div[@class='short-pages-2 clearfix']/div[@class='links']/a[last()]/@href").extract()
-
+        next_page_url = sel.xpath('//td[@nowrap="nowrap"]/span[@class="nav"]/a[1]/@href').extract()
         for url in article_url:
             # 拼接url
             urll = urljoin(self.baseurl, url)
@@ -433,13 +429,13 @@ class tianyaBBS5spider(CrawlSpider):
         l = ItemLoader(item=CpsecspidersItem(), response=response)
 
         article_url = str(response.url)
-        article_name = sel.xpath('//div[@id="post_head"]/h1/span/span/text()').extract()
+        article_name = sel.xpath('//a[@class="maintitle"]/text()').extract()
         article_content = sel.xpath(
-            '//div[@class="atl-main"]//div/div[@class="atl-content"]/div[2]/div[1]/text()').extract()
-        article_author = sel.xpath("//a[@class='js-vip-check']/text()").extract()
+            '//table[@class="attachtable"]//text()').extract()
+        article_author = sel.xpath("//td[@class='row1'][1]/span[@class='postdetails']/text()[1]").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
-
+        # print(article_name)
         # 文章内容拼起来
         for i in article_content:
             content = content + i
@@ -459,7 +455,7 @@ class tianyaBBS5spider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "天涯论坛-留言看板")
+        l.add_value('source', "cpn论坛-百鸟园")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)
