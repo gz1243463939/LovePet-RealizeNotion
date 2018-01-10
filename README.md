@@ -77,6 +77,8 @@
 
 #1.1 2018.01.06 天涯论坛宠物版块信息爬取测试完成 相关信息请看[天涯爬取](https://github.com/PythonScientists/LovePet-RealizeNotion/commit/b45eea23dd8aeda3259d50c4f750c2554edfdbd9)
 
+#1.2 2018.01.10 完善三个论坛10个版块的信息爬取 相关信息请看[完善爬虫爬取以及存库](https://github.com/PythonScientists/LovePet-RealizeNotion/commit/1eb79353993cb225f948ccd068c0c3b503f521a2)
+
 #2 2018.01.04 详细研发情况请查看我们的**[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)**
 
 ## 1.3平台
