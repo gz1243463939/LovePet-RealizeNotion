@@ -60,6 +60,6 @@
 信息源 | 信息链接 | 具体类别
 ------------- | ------------- | --------------------------
  宠物乐园_天涯论坛  | http://bbs.tianya.cn/list-75-1.shtml | 包含5个版块：养宠心情、非常宠物、留言看板、宠物信息、宠迷学堂
- CPN宠物论坛 |http://www.chinapet.net/bbs/
- 乐乐地带论坛 | http://club.lelezone.com/g4/f53-1/
-百度贴吧宠物吧 | http://tieba.baidu.com/f?kw=%B3%E8%CE%EF&fr=ala0&tpl=5&traceid=
+ CPN宠物论坛 |http://www.chinapet.net/bbs/ | 包含5个版块:诺亚方舟、狗话连篇、猫猫细语、冷血家族、百鸟园
+ 乐乐地带论坛 | http://club.lelezone.com/g4/f53-1/ |包含4个版块：狗狗训练、宠物美容、新手教学、宠物医生
+百度贴吧宠物吧 | http://tieba.baidu.com/f?kw=%B3%E8%CE%EF&fr=ala0&tpl=5&traceid= | 包含1个版块：宠物吧
