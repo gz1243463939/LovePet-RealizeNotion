@@ -44,7 +44,7 @@ class Baiduspider(CrawlSpider):
 
         # cpn论坛热帖榜  可以写多个用，分隔
 
-        "http://tieba.baidu.com/f?kw=%B3%E8%CE%EF&fr=ala0&tpl=5&traceid=",
+        "http://tieba.baidu.com/f?kw=%E5%AE%A0%E7%89%A9&ie=utf-8&pn=50",
 
     ]
     baseurl = 'https://tieba.baidu.com/'
@@ -55,7 +55,7 @@ class Baiduspider(CrawlSpider):
         item = CpsecspidersItem()
         # 文章url列表
         article_url = sel.xpath(
-            "//a[@class='j_th_tit']/@href").extract()
+            '//a[@class="j_th_tit "]/@href').extract()
         # 下一页地址
         next_page_url = sel.xpath('//*[@id="frs_list_pager"]/a[10]/@href').extract()
         for url in article_url:
@@ -106,7 +106,7 @@ class Baiduspider(CrawlSpider):
         l.add_value('reply', reply_num)
         l.add_value('click', click_num)
         l.add_value('uname', article_author)
-        l.add_value('source', "cpn论坛-诺亚方舟")
+        l.add_value('source', "百度贴吧")
         l.add_value('typeid', 0)
         l.add_value('datetime', time)
         l.add_value('EmotionalScore', 0)

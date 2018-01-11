@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f08f0ca4-5093-460c-bffa-eb49a91a6c20" name="aliyun-remote" url="http://47.94.12.59">
+        <fileTransfer host="47.94.12.59" port="22" rootFolder="/home/LovePet-RealizeNotion" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
