@@ -42,7 +42,7 @@ class Baiduspider(CrawlSpider):
     # 爬虫的爬取得起始url
     start_urls = [
 
-        # cpn论坛热帖榜  可以写多个用，分隔
+        # 百度贴吧热帖榜  可以写多个用，分隔
 
         "http://tieba.baidu.com/f?kw=%E5%AE%A0%E7%89%A9&ie=utf-8&pn=50",
 
@@ -83,7 +83,7 @@ class Baiduspider(CrawlSpider):
         article_url = str(response.url)
         article_name = sel.xpath("//h1[@class='core_title_txt  ']/text()").extract()
         article_content = sel.xpath(
-            "//div[@class='p_content p_content_nameplate']").extract()
+            "//div[@class='p_content  p_content p_content_nameplate']/cc//text()").extract()
         article_author = sel.xpath("substring-after(//a[@class='p_author_name j_user_card']/text(),'')").extract()
         article_clik_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[3]/text(),"：")').extract()
         article_reply_num = sel.xpath('substring-after(//div[@class="atl-info"]/span[4]/text(),"：")').extract()
