@@ -61,6 +61,8 @@
 
 本项目会随时更新进度，进度会随时更新在[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)上面
 
+爬虫相关的进度会更新在[crawler分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/crawler)
+
 感兴趣的参与者可以在项目的[wiki](https://github.com/PythonScientists/LovePet-RealizeNotion/wiki)中查看项目的计划以及整体实现方案
 
 ---
