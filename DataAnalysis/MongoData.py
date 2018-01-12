@@ -11,7 +11,7 @@ class Init_Mongo:
     """获取mongo连接实例"""
     @staticmethod
     def getCol(doc, col):
-        client = AIOM('mongodb://localhost:27017')
+        client = AIOM('mongodb://47.94.12.59:27017')
         db = client[doc]
         collection = db[col]
         return collection
