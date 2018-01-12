@@ -79,6 +79,8 @@
 
 #1.2 2018.01.10 完善三个论坛10个版块的信息爬取 相关信息请看[完善爬虫爬取以及存库](https://github.com/PythonScientists/LovePet-RealizeNotion/commit/1eb79353993cb225f948ccd068c0c3b503f521a2)
 
+#1.3 2018.01.12 进行数据处理，完成dash的基本demo 相关信息请看[对数据进行处理](https://github.com/PythonScientists/LovePet-RealizeNotion/commit/b09dc50fff92b45e8d2237a641bfcfc0684c1a08)
+
 #2 2018.01.04 详细研发情况请查看我们的**[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)**
 
 ## 1.3平台
