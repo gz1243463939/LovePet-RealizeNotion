@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 #-*-coding:utf-8-*-
 # __all__=""
-# __datetime__=""
-# __purpose__="聚合数据，分析结果"
+# __datetime__="2018.01.12"
+# __purpose__="聚合数据，分析结果，使用snownlp作情感分析"
 
 from MongoData import getData
 import asyncio
@@ -42,6 +42,22 @@ class MakeResult(metaclass=Meta):
         # 执行异步组数据
         r = cls.loop.run_until_complete(asyncio.gather(*tasks))
         # 存储到np.array里面
-        ar = np.array( *i for i in r)
+        ar = np.array([j for i in r for j in i])
         return ar
-MakeResult.collection()
+    @classmethod
+    def top10(cls):
+        """
+        前十关键词和数量
+        :return: [name] [count]
+        """
+        r = ((1,2),(2,3),(3,4,1))
+        n = np.array([j for i in r for j in i])
+        print(type(n))
+    @classmethod
+    def sem(cls):
+        """
+        统计情感分析
+        :return: [name] [count]
+
+        """
+MakeResult.top10()
