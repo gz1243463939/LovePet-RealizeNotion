@@ -92,7 +92,7 @@
 #2 2018.01.04 详细研发情况请查看我们的**[develop分支](https://github.com/PythonScientists/LovePet-RealizeNotion/tree/develop)**
 
 ## 1.3平台
-# 2功能
+# 2功能 .
 
 ## 2.1功能划分图
 
