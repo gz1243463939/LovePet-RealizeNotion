@@ -7,7 +7,7 @@
 # LovePet&RealizeNotion
 
 ```
-一个运用人工智能解决广大宠物控各式难题的大数据平台
+一个运用人工智能解决广大宠物控各式难题的大数据平台。
  A bigdata platform using artificial intelligence to solve the problem of pet control .
 ```
 
